@@ -48,7 +48,7 @@
     Opal.defn(self, '$getHelpMessage', TMP_Locke_getHelpMessage_4 = function $$getHelpMessage() {
       var self = this;
 
-      return "" + "そこに居たチェック ARR\n" + "実は生きていたチェック REV\n" + "残留思念チェック ZS\n" + "\n" + "船 SHIP\n" + "ブラックメイデン SHIP_BM\n" + "マウス SHIP_MS\n" + "\n" + "レイガン nRG  n:攻撃回数（以下同様）\n" + "ブラスター nBL\n" + "バズーカ nBZ\n" + "ビームキャノン nBC\n" + "\n" + "n:m のダメージ　DMGn:m\n" + "\n" + "トラップn Tn\n" + "トラップ1-3 T1-3\n" + "トラップ1-4 T1-4\n" + "\n" + "遺伝子再編成 GENE\n" + "プラグチェック PLUG\n" + "ランダムアクシデント RA\n" + "変身チェック TF\n"
+      return "" + "ARR そこに居たチェック\n" + "REV 実は生きていたチェック\n" + "ZS 残留思念チェック\n" + "\n" + "SHIP 船\n" + "SHIP_BM ブラックメイデン\n" + "SHIP_MS マウス\n" + "\n" + "nRG レイガン  n:攻撃回数（以下同様）\n" + "nBL ブラスター\n" + "nBZ バズーカ\n" + "nBC ビームキャノン\n" + "\n" + "DMGn:m n:m のダメージ\n" + "\n" + "Tn トラップn\n" + "T1-3 トラップ1-3\n" + "T1-4 トラップ1-4\n" + "\n" + "GENE 遺伝子再編成\n" + "PLUG プラグチェック\n" + "RA ランダムアクシデント\n" + "TF 変身チェック\n"
     }, TMP_Locke_getHelpMessage_4.$$arity = 0);
     
     Opal.defn(self, '$rollDiceCommand', TMP_Locke_rollDiceCommand_5 = function $$rollDiceCommand(command) {
