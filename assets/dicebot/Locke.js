@@ -6,17 +6,23 @@
   function $rb_plus(lhs, rhs) {
     return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs + rhs : lhs['$+'](rhs);
   }
+  function $rb_ge(lhs, rhs) {
+    return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs >= rhs : lhs['$>='](rhs);
+  }
+  function $rb_gt(lhs, rhs) {
+    return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs > rhs : lhs['$>'](rhs);
+  }
   function $rb_minus(lhs, rhs) {
     return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs - rhs : lhs['$-'](rhs);
   }
   var self = Opal.top, $nesting = [], nil = Opal.nil, $breaker = Opal.breaker, $slice = Opal.slice, $klass = Opal.klass, $send = Opal.send, $truthy = Opal.truthy, $hash2 = Opal.hash2;
 
-  Opal.add_stubs(['$get_damage', '$!', '$nil?', '$get_ship_attack', '$get_shoot_attack', '$get_event_effect', '$[]', '$upcase', '$===', '$get_table_by_1d6', '$get_table_by_2d6', '$get_ship_attack_normal', '$get_ship_attack_black_maiden', '$get_ship_attack_mouse', '$roll_nd6', '$==', '$<=', '$get_arrival_check', '$get_revival_check', '$get_zanryu_shinen_check', '$get_transformation_check', '$get_t13_effect', '$get_t14_effect', '$get_plug_effect', '$to_i', '$last_match', '$each', '$+', '$-', '$roll', '$getDiceListFromDiceText', '$get_table_by_nd6', '$setPrefixes', '$keys']);
+  Opal.add_stubs(['$get_damage', '$!', '$nil?', '$get_ship_attack', '$get_shoot_attack', '$get_effect', '$[]', '$upcase', '$===', '$get_table_by_1d6', '$get_table_by_2d6', '$get_ship_attack_normal', '$get_ship_attack_black_maiden', '$get_ship_attack_mouse', '$roll_nd6', '$==', '$<=', '$get_arrival_check', '$get_revival_check', '$get_zanryu_shinen_check', '$to_i', '$last_match', '$get_jail_check', '$get_transformation_check', '$get_t13_effect', '$get_t14_effect', '$get_geoid_character', '$get_geoid_item', '$get_hyperspace_beam', '$get_plug_effect', '$+', '$>=', '$>', '$each', '$-', '$roll', '$getDiceListFromDiceText', '$get_table_by_nd6', '$setPrefixes', '$keys']);
   return (function($base, $super, $parent_nesting) {
     function $Locke(){};
     var self = $Locke = $klass($base, $super, 'Locke', $Locke);
 
-    var def = self.$$proto, $nesting = [self].concat($parent_nesting), TMP_Locke_initialize_1, TMP_Locke_gameName_2, TMP_Locke_gameType_3, TMP_Locke_getHelpMessage_4, TMP_Locke_rollDiceCommand_5, TMP_Locke_get_ship_attack_6, TMP_Locke_get_ship_attack_normal_7, TMP_Locke_get_ship_attack_black_maiden_8, TMP_Locke_get_ship_attack_mouse_9, TMP_Locke_get_event_effect_10, TMP_Locke_get_arrival_check_11, TMP_Locke_get_revival_check_12, TMP_Locke_get_zanryu_shinen_check_13, TMP_Locke_get_transformation_check_14, TMP_Locke_get_plug_effect_15, TMP_Locke_get_t13_effect_16, TMP_Locke_get_t14_effect_17, TMP_Locke_get_shoot_attack_19, TMP_Locke_get_damage_20, TMP_Locke_roll_nd6_21, TMP_Locke_get_table_by_nd6_22, TMP_Locke_get_table_by_2d6_23, TMP_Locke_get_table_by_1d6_24, $a;
+    var def = self.$$proto, $nesting = [self].concat($parent_nesting), TMP_Locke_initialize_1, TMP_Locke_gameName_2, TMP_Locke_gameType_3, TMP_Locke_getHelpMessage_4, TMP_Locke_rollDiceCommand_5, TMP_Locke_get_ship_attack_6, TMP_Locke_get_ship_attack_normal_7, TMP_Locke_get_ship_attack_black_maiden_8, TMP_Locke_get_ship_attack_mouse_9, TMP_Locke_get_effect_10, TMP_Locke_get_arrival_check_11, TMP_Locke_get_revival_check_12, TMP_Locke_get_zanryu_shinen_check_13, TMP_Locke_get_transformation_check_14, TMP_Locke_get_jail_check_15, TMP_Locke_get_plug_effect_16, TMP_Locke_get_t13_effect_17, TMP_Locke_get_t14_effect_18, TMP_Locke_get_geoid_character_19, TMP_Locke_get_geoid_item_20, TMP_Locke_get_hyperspace_beam_21, TMP_Locke_get_shoot_attack_23, TMP_Locke_get_damage_24, TMP_Locke_roll_nd6_25, TMP_Locke_get_table_by_nd6_26, TMP_Locke_get_table_by_2d6_27, TMP_Locke_get_table_by_1d6_28, $a;
 
     
     
@@ -48,7 +54,7 @@
     Opal.defn(self, '$getHelpMessage', TMP_Locke_getHelpMessage_4 = function $$getHelpMessage() {
       var self = this;
 
-      return "" + "ARR そこに居たチェック\n" + "REV 実は生きていたチェック\n" + "ZS 残留思念チェック\n" + "\n" + "SHIP 船\n" + "SHIP_BM ブラックメイデン\n" + "SHIP_MS マウス\n" + "\n" + "nRG レイガン  n:攻撃回数（以下同様）\n" + "nBL ブラスター\n" + "nBZ バズーカ\n" + "nBC ビームキャノン\n" + "\n" + "DMGn n:1 のダメージ (n = 0 のときは 1:2 のダメージ)\n" + "\n" + "Tn トラップn\n" + "T1-3 トラップ1-3\n" + "T1-4 トラップ1-4\n" + "\n" + "GENE 遺伝子再編成\n" + "PLUG プラグチェック\n" + "RA ランダムアクシデント\n" + "TF 変身チェック\n"
+      return "" + "ARR そこに居たチェック\n" + "REV 実は生きていたチェック\n" + "ZS 残留思念チェック\n" + "\n" + "JAILn 逮捕チェック (出目+n)\n" + "BTL 戦闘チャート\n" + "WPN 武器決定チャート\n" + "\n" + "SHIP 船\n" + "SHIP_BM ブラックメイデン\n" + "SHIP_MS マウス\n" + "\n" + "nRG レイガン  n:攻撃回数（以下同様）\n" + "nBL ブラスター\n" + "nBZ バズーカ\n" + "nBC ビームキャノン\n" + "\n" + "GEO ジオイド弾 (キャラクター)\n" + "IGEO ジオイド弾 (アイテム)\n" + "HYB 亜空間ビーム\n" + "\n" + "DMGn n:1 のダメージ (n = 0 のときは 1:2 のダメージ)\n" + "\n" + "Tn トラップn\n" + "T1-3 トラップ1-3\n" + "T1-4 トラップ1-4\n" + "\n" + "GENE 遺伝子再編成\n" + "PLUG プラグチェック\n" + "RA ランダムアクシデント\n" + "TF 変身チェック\n" + "\n" + "MNS 大臣の特権\n"
     }, TMP_Locke_getHelpMessage_4.$$arity = 0);
     
     Opal.defn(self, '$rollDiceCommand', TMP_Locke_rollDiceCommand_5 = function $$rollDiceCommand(command) {
@@ -64,7 +70,7 @@
       result_text = self.$get_shoot_attack(command);
       if ($truthy(result_text['$nil?']()['$!']())) {
         return result_text};
-      result_text = self.$get_event_effect(command);
+      result_text = self.$get_effect(command);
       if ($truthy(result_text['$nil?']()['$!']())) {
         return result_text};
       info = (($a = $Locke.$$cvars['@@tables']) == null ? nil : $a)['$[]'](command.$upcase());
@@ -151,8 +157,8 @@
       return "" + "マウス (" + (num) + "[" + (dice_text) + "]) " + (attack_text);
     }, TMP_Locke_get_ship_attack_mouse_9.$$arity = 0);
     
-    Opal.defn(self, '$get_event_effect', TMP_Locke_get_event_effect_10 = function $$get_event_effect(command) {
-      var self = this, result_text = nil, $case = nil;
+    Opal.defn(self, '$get_effect', TMP_Locke_get_effect_10 = function $$get_effect(command) {
+      var $a, self = this, result_text = nil, $case = nil, n = nil;
 
       
       result_text = "";
@@ -160,13 +166,19 @@
       if ("ARR"['$===']($case)) {result_text = self.$get_arrival_check()}
       else if ("REV"['$===']($case)) {result_text = self.$get_revival_check()}
       else if ("ZS"['$===']($case)) {result_text = self.$get_zanryu_shinen_check()}
+      else if (/JAIL(\d+)*/i['$===']($case)) {
+      n = ($truthy($a = Opal.const_get_relative($nesting, 'Regexp').$last_match(1)) ? $a : 0).$to_i();
+      result_text = self.$get_jail_check(n);}
       else if ("TF"['$===']($case)) {result_text = self.$get_transformation_check()}
       else if ("T1-3"['$===']($case)) {result_text = self.$get_t13_effect()}
       else if ("T1-4"['$===']($case)) {result_text = self.$get_t14_effect()}
+      else if ("GEO"['$===']($case)) {result_text = self.$get_geoid_character()}
+      else if ("IGEO"['$===']($case)) {result_text = self.$get_geoid_item()}
+      else if ("HYB"['$===']($case)) {result_text = self.$get_hyperspace_beam()}
       else if ("PLUG"['$===']($case)) {result_text = self.$get_plug_effect()}
       else {return nil};
       return result_text;
-    }, TMP_Locke_get_event_effect_10.$$arity = 1);
+    }, TMP_Locke_get_effect_10.$$arity = 1);
     
     Opal.defn(self, '$get_arrival_check', TMP_Locke_get_arrival_check_11 = function $$get_arrival_check() {
       var $a, $b, self = this, num = nil, dice_text = nil, effect_text = nil;
@@ -243,7 +255,35 @@
       return "" + "変身チェック (" + (num) + "[" + (dice_text) + "]) " + (effect_text);
     }, TMP_Locke_get_transformation_check_14.$$arity = 0);
     
-    Opal.defn(self, '$get_plug_effect', TMP_Locke_get_plug_effect_15 = function $$get_plug_effect() {
+    Opal.defn(self, '$get_jail_check', TMP_Locke_get_jail_check_15 = function $$get_jail_check(n) {
+      var $a, $b, self = this, num = nil, dice_text = nil, effect_text = nil, addition_text = nil;
+
+      
+      $b = self.$roll_nd6(2), $a = Opal.to_ary($b), (num = ($a[0] == null ? nil : $a[0])), (dice_text = ($a[1] == null ? nil : $a[1])), $b;
+      effect_text = "";
+      if ($truthy((($a = $rb_le(2, num)) ? $rb_le(num, 5) : $rb_le(2, num)))) {
+        effect_text = "脱出成功"
+      } else if ($rb_plus(num, n)['$=='](6)) {
+        effect_text = "Lv4以上なら脱出成功"
+      } else if ($rb_plus(num, n)['$=='](7)) {
+        effect_text = "Lv5以上なら脱出成功"
+      } else if ($rb_plus(num, n)['$=='](8)) {
+        effect_text = "Lv6以上なら脱出成功"
+      } else if ($truthy(($truthy($a = $rb_plus(num, n)['$=='](9)) ? $a : $rb_plus(num, n)['$=='](10)))) {
+        effect_text = "戦闘発生 コマンドBTLの結果を適用。逃避カードで戦闘から抜けると再び逮捕される。"
+      } else if ($rb_plus(num, n)['$=='](11)) {
+        effect_text = "TRAP1 コマンドT1の結果を適用。適用後、釈放。"
+      } else if ($truthy($rb_ge($rb_plus(num, n), 12))) {
+        effect_text = "プルーブ Lvが0になる。毎ターン1D6を振り、1か2が出るとLvが元に戻る。"};
+      addition_text = (function() {if ($truthy(($truthy($a = $rb_gt(n, 0)) ? $rb_ge(num, 6) : $a))) {
+        return "" + " + " + (n)
+        } else {
+        return ""
+      }; return nil; })();
+      return "" + "逮捕チェック (" + (num) + "[" + (dice_text) + "]" + (addition_text) + ") " + (effect_text);
+    }, TMP_Locke_get_jail_check_15.$$arity = 1);
+    
+    Opal.defn(self, '$get_plug_effect', TMP_Locke_get_plug_effect_16 = function $$get_plug_effect() {
       var $a, $b, self = this, num = nil, dice_text = nil, effect_text = nil;
 
       
@@ -258,9 +298,9 @@
       } else if (num['$=='](12)) {
         effect_text = "爆死。"};
       return "" + "プラグチェック (" + (num) + "[" + (dice_text) + "]) " + (effect_text);
-    }, TMP_Locke_get_plug_effect_15.$$arity = 0);
+    }, TMP_Locke_get_plug_effect_16.$$arity = 0);
     
-    Opal.defn(self, '$get_t13_effect', TMP_Locke_get_t13_effect_16 = function $$get_t13_effect() {
+    Opal.defn(self, '$get_t13_effect', TMP_Locke_get_t13_effect_17 = function $$get_t13_effect() {
       var $a, $b, self = this, num = nil, dice_text = nil, effect_text = nil;
 
       
@@ -273,9 +313,9 @@
       } else if (num['$=='](6)) {
         effect_text = "TRAP3"};
       return "" + "T1-3 (" + (num) + "[" + (dice_text) + "]) " + (effect_text);
-    }, TMP_Locke_get_t13_effect_16.$$arity = 0);
+    }, TMP_Locke_get_t13_effect_17.$$arity = 0);
     
-    Opal.defn(self, '$get_t14_effect', TMP_Locke_get_t14_effect_17 = function $$get_t14_effect() {
+    Opal.defn(self, '$get_t14_effect', TMP_Locke_get_t14_effect_18 = function $$get_t14_effect() {
       var $a, $b, self = this, num = nil, dice_text = nil, effect_text = nil;
 
       
@@ -290,10 +330,57 @@
       } else if ($truthy(($truthy($a = num['$=='](11)) ? $a : num['$=='](12)))) {
         effect_text = "TRAP4"};
       return "" + "T1-4 (" + (num) + "[" + (dice_text) + "]) " + (effect_text);
-    }, TMP_Locke_get_t14_effect_17.$$arity = 0);
+    }, TMP_Locke_get_t14_effect_18.$$arity = 0);
     
-    Opal.defn(self, '$get_shoot_attack', TMP_Locke_get_shoot_attack_19 = function $$get_shoot_attack(command) {
-      var $a, $b, TMP_18, self = this, weapon_index = nil, weapon_name = nil, $case = nil, count = nil, weapon_damage_table = nil, _ = nil, dice_text = nil, dice_list = nil, shock = nil, dice = nil;
+    Opal.defn(self, '$get_geoid_character', TMP_Locke_get_geoid_character_19 = function $$get_geoid_character() {
+      var $a, $b, self = this, num = nil, dice_text = nil, effect_text = nil;
+
+      
+      $b = self.$roll_nd6(2), $a = Opal.to_ary($b), (num = ($a[0] == null ? nil : $a[0])), (dice_text = ($a[1] == null ? nil : $a[1])), $b;
+      effect_text = "";
+      if ($truthy((($a = $rb_le(2, num)) ? $rb_le(num, 6) : $rb_le(2, num)))) {
+        effect_text = "ジオイド弾 火力100"
+      } else if ($truthy((($a = $rb_le(7, num)) ? $rb_le(num, 9) : $rb_le(7, num)))) {
+        effect_text = "何も無し。自分の行動を行う。"
+      } else if ($truthy((($a = $rb_le(10, num)) ? $rb_le(num, 12) : $rb_le(10, num)))) {
+        effect_text = "しびれる。そのラウンドは行動不可。"};
+      return "" + "ジオイド弾 (" + (num) + "[" + (dice_text) + "]) " + (effect_text);
+    }, TMP_Locke_get_geoid_character_19.$$arity = 0);
+    
+    Opal.defn(self, '$get_geoid_item', TMP_Locke_get_geoid_item_20 = function $$get_geoid_item() {
+      var $a, $b, self = this, num = nil, dice_text = nil, effect_text = nil;
+
+      
+      $b = self.$roll_nd6(2), $a = Opal.to_ary($b), (num = ($a[0] == null ? nil : $a[0])), (dice_text = ($a[1] == null ? nil : $a[1])), $b;
+      effect_text = "";
+      if ($truthy((($a = $rb_le(2, num)) ? $rb_le(num, 4) : $rb_le(2, num)))) {
+        effect_text = "ジオイド弾 火力100、「ジオイド弾」は破棄される。"
+      } else if ($truthy((($a = $rb_le(5, num)) ? $rb_le(num, 9) : $rb_le(5, num)))) {
+        effect_text = "何も無し。自分の行動を行う。"
+      } else if ($truthy((($a = $rb_le(10, num)) ? $rb_le(num, 12) : $rb_le(10, num)))) {
+        effect_text = "しびれる。そのラウンドは行動不可。"};
+      return "" + "ジオイド弾 (" + (num) + "[" + (dice_text) + "]) " + (effect_text);
+    }, TMP_Locke_get_geoid_item_20.$$arity = 0);
+    
+    Opal.defn(self, '$get_hyperspace_beam', TMP_Locke_get_hyperspace_beam_21 = function $$get_hyperspace_beam() {
+      var $a, $b, self = this, num = nil, dice_text = nil, effect_text = nil;
+
+      
+      $b = self.$roll_nd6(2), $a = Opal.to_ary($b), (num = ($a[0] == null ? nil : $a[0])), (dice_text = ($a[1] == null ? nil : $a[1])), $b;
+      effect_text = "";
+      if (num['$=='](2)) {
+        effect_text = "亜空間ビーム Lv8 火力200、「亜空間ビーム」は破棄される。"
+      } else if ($truthy((($a = $rb_le(3, num)) ? $rb_le(num, 7) : $rb_le(3, num)))) {
+        effect_text = "何も無し。自分の行動を行う。"
+      } else if ($truthy((($a = $rb_le(8, num)) ? $rb_le(num, 10) : $rb_le(8, num)))) {
+        effect_text = "しびれる。そのラウンドは行動不可。"
+      } else if ($truthy(($truthy($a = num['$=='](11)) ? $a : num['$=='](12)))) {
+        effect_text = "暴発 その場にいるキャラ全員Lv8、火力200の攻撃を喰らう。「亜空間ビーム」は破棄される"};
+      return "" + "亜空間ビーム (" + (num) + "[" + (dice_text) + "]) " + (effect_text);
+    }, TMP_Locke_get_hyperspace_beam_21.$$arity = 0);
+    
+    Opal.defn(self, '$get_shoot_attack', TMP_Locke_get_shoot_attack_23 = function $$get_shoot_attack(command) {
+      var $a, $b, TMP_22, self = this, weapon_index = nil, weapon_name = nil, $case = nil, count = nil, weapon_damage_table = nil, _ = nil, dice_text = nil, dice_list = nil, shock = nil, dice = nil;
 
       
       weapon_index = 0;
@@ -319,15 +406,15 @@
       
       ;
       ;
-      $send(dice_list, 'each', [], (TMP_18 = function($for_tmp1){var self = TMP_18.$$s || this;
+      $send(dice_list, 'each', [], (TMP_22 = function($for_tmp1){var self = TMP_22.$$s || this;
 if ($for_tmp1 == null) $for_tmp1 = nil;
       
         dice = $for_tmp1;
-        return (shock = $rb_plus(shock, weapon_damage_table['$[]'](weapon_index)['$[]']($rb_minus(dice, 1))));}, TMP_18.$$s = self, TMP_18.$$arity = 1, TMP_18));;
+        return (shock = $rb_plus(shock, weapon_damage_table['$[]'](weapon_index)['$[]']($rb_minus(dice, 1))));}, TMP_22.$$s = self, TMP_22.$$arity = 1, TMP_22));;
       return "" + (weapon_name) + "x" + (count) + " ([" + (dice_text) + "]) → 火力" + (shock);
-    }, TMP_Locke_get_shoot_attack_19.$$arity = 1);
+    }, TMP_Locke_get_shoot_attack_23.$$arity = 1);
     
-    Opal.defn(self, '$get_damage', TMP_Locke_get_damage_20 = function $$get_damage(command) {
+    Opal.defn(self, '$get_damage', TMP_Locke_get_damage_24 = function $$get_damage(command) {
       var $a, $b, self = this, $case = nil, damage_index = nil, damage_rate_text = nil, damage_rate_table = nil, damage = nil, num = nil, dice_text = nil, transform_check_text = nil;
 
       
@@ -348,39 +435,39 @@ if ($for_tmp1 == null) $for_tmp1 = nil;
       if ($truthy(($truthy($a = num['$=='](2)) ? $a : num['$=='](12)))) {
         transform_check_text = "変身チェック（コマンド TF）"};
       return "" + (damage_rate_text) + " ダメージ (" + (num) + "[" + (dice_text) + "]) → " + (damage) + " ダメージ " + (transform_check_text);
-    }, TMP_Locke_get_damage_20.$$arity = 1);
+    }, TMP_Locke_get_damage_24.$$arity = 1);
     
-    Opal.defn(self, '$roll_nd6', TMP_Locke_roll_nd6_21 = function $$roll_nd6(n) {
+    Opal.defn(self, '$roll_nd6', TMP_Locke_roll_nd6_25 = function $$roll_nd6(n) {
       var $a, $b, self = this, num = nil, dice_text = nil, dice_list = nil;
 
       
       $b = self.$roll(n, 6), $a = Opal.to_ary($b), (num = ($a[0] == null ? nil : $a[0])), (dice_text = ($a[1] == null ? nil : $a[1])), $b;
       dice_list = self.$getDiceListFromDiceText(dice_text);
       return [num, dice_text, dice_list];
-    }, TMP_Locke_roll_nd6_21.$$arity = 1);
+    }, TMP_Locke_roll_nd6_25.$$arity = 1);
     
-    Opal.defn(self, '$get_table_by_nd6', TMP_Locke_get_table_by_nd6_22 = function $$get_table_by_nd6(count, table) {
+    Opal.defn(self, '$get_table_by_nd6', TMP_Locke_get_table_by_nd6_26 = function $$get_table_by_nd6(count, table) {
       var $a, $b, self = this, num = nil, dice_text = nil, dice_list = nil, value = nil;
 
       
       $b = self.$roll_nd6(count), $a = Opal.to_ary($b), (num = ($a[0] == null ? nil : $a[0])), (dice_text = ($a[1] == null ? nil : $a[1])), (dice_list = ($a[2] == null ? nil : $a[2])), $b;
       value = table['$[]']($rb_minus(num, count));
       return [value, num, dice_text, dice_list];
-    }, TMP_Locke_get_table_by_nd6_22.$$arity = 2);
+    }, TMP_Locke_get_table_by_nd6_26.$$arity = 2);
     
-    Opal.defn(self, '$get_table_by_2d6', TMP_Locke_get_table_by_2d6_23 = function $$get_table_by_2d6(table) {
+    Opal.defn(self, '$get_table_by_2d6', TMP_Locke_get_table_by_2d6_27 = function $$get_table_by_2d6(table) {
       var self = this;
 
       return self.$get_table_by_nd6(2, table)
-    }, TMP_Locke_get_table_by_2d6_23.$$arity = 1);
+    }, TMP_Locke_get_table_by_2d6_27.$$arity = 1);
     
-    Opal.defn(self, '$get_table_by_1d6', TMP_Locke_get_table_by_1d6_24 = function $$get_table_by_1d6(table) {
+    Opal.defn(self, '$get_table_by_1d6', TMP_Locke_get_table_by_1d6_28 = function $$get_table_by_1d6(table) {
       var self = this;
 
       return self.$get_table_by_nd6(1, table)
-    }, TMP_Locke_get_table_by_1d6_24.$$arity = 1);
-    (Opal.class_variable_set($Locke, '@@tables', $hash2(["T1", "T2", "T3", "T4", "GENE", "RA"], {"T1": $hash2(["name", "type", "table"], {"name": "TRAP1", "type": "2D6", "table": ["死人苔 1Dで耐久力チェックに失敗すると、0Lvになる。かかったキャラと同じマスにいるキャラは耐久力チェックをし、失敗すると動揺に0Lvになる", "ネクラ 全員10:1ダメージ", "ダンディー シルエットが女性だと2D回休み。トワイライト・ウォーリアはOPENすると勝利する。", "幻覚攻撃 2Dでレベルチェック。失敗すると出目の火力のダメージを食らう。ぞろ目はもう１回。", "ダイバー 耐久8のブラスター隊4人。Eストロハイムは正体が露見し、装備が回復する。逮捕不可。", "締め切り シルエットが聖悠紀だと2D6回、ロックだと1D6回休み。", "サイバー 耐久10のブラスター隊5人。ラウンドの最後に2回目の攻撃。逮捕不可。", "パッX 1D6回休み", "小麦 一時的にゲーム盤から除外される。自分の手番で1D6で5,6を振れば帰還。", "TRAP2 TRAP2へ。", "暗黒騎士団 上空からD弾。ラウンドの最後に1D6で4,5,6でオーバーヒート。機械攻撃。"]}), "T2": $hash2(["name", "type", "table"], {"name": "TRAP2", "type": "2D6", "table": ["遺伝子再編成 コマンドGENEの結果を適用。", "白カードひき直し 白カードを引き直す。", "ブラスト レベル+1、耐久-1、精神-1、パワー+20、同系列のカードは出せる最大のものを使用しなければならない。より高いレベルのカードをチェックすることは可能。死んで復活するか、もう一度かかると治る。", "ロックに会う 説得される。", "白顔露見 白カードと顔カードが露見する。", "共振樹 レベルによって違う火力のダメージを食らう。火力は以下の通り。0:0, 1:3, 2:6, 3:10, 4:20, 5:30, 6:50", "結婚・離婚 独身のキャラは既婚に、既婚のキャラは独身になる。", "白カードもう１枚 白カードをもう１枚引く。", "プラグ 5レベル、パワー50のエスパーになる。自分の手番か、戦闘時のラウンドの最初にコマンドPLUGの効果を適用。", "TRAP3 TRAP3へ。", "全カード露見 キャラクターカードと白カード、顔カード、能力カードが露見する。"]}), "T3": $hash2(["name", "type", "table"], {"name": "TRAP3", "type": "2D6", "table": ["真の人格 リインカーネーション。", "結界 ゲームから除外される。そこにいたチェックで4以下を振ると復帰できる。", "あたり 惑星カードを2枚引く。引く度に効果を適用する。", "信念逆転 GoodはEvilに、EvilはGoodに、E/GはG/Eになる。リュカーン、エルナ、カルダームは顔カードの色が逆転する。ロックはかからない。", "全員ランテレ 全員ランダムテレポート。", "情報入手3枚 情報入手3枚、ジェシカは入れることができるが、トワイライト・ウォーリアは入らない。", "攻守逆転 Goodが拠点を防衛し、Evilが破壊するようになる。もう一度適用されると元の状態に戻る。", "真のG/E 顔カードが青であればEvilに、赤であればGoodになる。個別勝利条件は消える。ロックはかからない。", "遺伝子再編成 コマンドGENEの結果を適用。", "TRAP4 TRAP4へ。", "一列破壊 ランダムに1列が破壊される。そこにいたキャラはレベルチェックに成功しないと死ぬ。ただし、船を持っているキャラは6Lvとしてチェックできる。ブラックメイデンは船扱いにならない。"]}), "T4": $hash2(["name", "type", "table"], {"name": "TRAP4", "type": "2D6", "table": ["全員真の人格 全員リインカーネーション。", "全員10:1 全員に10:1のダメージ。ロックもかかる。", "全員ブラスト 全員ブラストする。レベル+1、耐久-1、精神-1、パワー+20、同系列のカードは出せる最大のものを使用しなければならない。より高いレベルのカードをチェックすることは可能。死んで復活するか、もう一度かかると治る。", "全員ロックに会う 全員説得される。", "全員惑星カード1枚 全員惑星カード1枚引く", "全員ランダムアクシデント 全員コマンドRAの効果を適用する。", "全員白カードもう1枚 全員白カードを1枚引ける。", "全員全カード露見 全員全カードが露見する。", "全員遺伝子再編成 全員遺伝子再編成する。", "TRAP1 TRAP1へ。", "全土破壊 全土が破壊される。全員レベルチェックし、成功したらゲームに勝利、失敗したら敗北する。ただし、船を持っているキャラは6Lvとしてチェックできる。ブラックメイデンは船扱いにならない。"]}), "GENE": $hash2(["name", "type", "table"], {"name": "遺伝子再編成", "type": "1D6", "table": ["精神+1、耐久-1", "精神+1、レベル-1", "耐久+1、レベル-1", "レベル+1、精神-1", "耐久+1、精神-1", "レベル+1、耐久-1"]}), "RA": $hash2(["name", "type", "table"], {"name": "ランダムアクシデント", "type": "1D6", "table": ["真の人格 リインカーネーションする。", "ブラスト レベル+1、耐久-1、精神-1、パワー+20、同系列のカードは出せる最大のものを使用しなければならない。より高いレベルのカードをチェックすることは可能。死んで復活するか、もう一度かかると治る。", "信念逆転 GoodはEvilに、EvilはGoodに、E/GはG/Eになる。リュカーン、エルナ、カルダームは顔カードの色が逆転する。ロックはかからない。", "ロックに会う 説得される。", "遺伝子再編成 コマンドGENEの結果を適用。", "何もなし。"]})})));
-    return self.$setPrefixes($rb_plus(["ARR", "REV", "ZS", "TF", "SHIP", "SHIP_BM", "SHIP_MS", "PLUG", "T1-3", "T1-4", /DMG(\d+)/i, /(\d+)*RG/i, /(\d+)*BL/i, /(\d+)*BZ/i, /(\d+)*BC/i], (($a = $Locke.$$cvars['@@tables']) == null ? nil : $a).$keys()));
+    }, TMP_Locke_get_table_by_1d6_28.$$arity = 1);
+    (Opal.class_variable_set($Locke, '@@tables', $hash2(["BTL", "WPN", "T1", "T2", "T3", "T4", "GENE", "RA", "MNS"], {"BTL": $hash2(["name", "type", "table"], {"name": "戦闘発生", "type": "2D6", "table": ["キャラクター", "3-3エスパー", "3-2エスパー", "2-2エスパー", "レイガン隊 3人", "ブラスター隊 3人", "バズーカ隊 3人", "ジャマー1 3人、武器は武装チャート WPN で決定する。", "ジャマー2 3人、武器は武装チャート WPN で決定する。", "ジャマー3 4人、武器は武装チャート WPN で決定する。", "ジャマー4 5人、武器は武装チャート WPN で決定する。"]}), "WPN": $hash2(["name", "type", "table"], {"name": "武装", "type": "2D6", "table": ["上空からG弾", "TRAP1", "レイガン", "レイガン", "ブラスター", "ブラスター", "ブラスター", "バズーカ", "バズーカ", "ビーキャン装甲車", "上空からD弾"]}), "T1": $hash2(["name", "type", "table"], {"name": "TRAP1", "type": "2D6", "table": ["死人苔 1Dで耐久力チェックに失敗すると、0Lvになる。かかったキャラと同じマスにいるキャラは耐久力チェックをし、失敗すると動揺に0Lvになる", "ネクラ 全員10:1ダメージ", "ダンディー シルエットが女性だと2D回休み。トワイライト・ウォーリアはOPENすると勝利する。", "幻覚攻撃 2Dでレベルチェック。失敗すると出目の火力のダメージを食らう。ぞろ目はもう１回。", "ダイバー 耐久8のブラスター隊4人。Eストロハイムは正体が露見し、装備が回復する。逮捕不可。", "締め切り シルエットが聖悠紀だと2D6回、ロックだと1D6回休み。", "サイバー 耐久10のブラスター隊5人。ラウンドの最後に2回目の攻撃。逮捕不可。", "パッX 1D6回休み", "小麦 一時的にゲーム盤から除外される。自分の手番で1D6で5,6を振れば帰還。", "TRAP2 TRAP2へ。", "暗黒騎士団 上空からD弾。ラウンドの最後に1D6で4,5,6でオーバーヒート。機械攻撃。"]}), "T2": $hash2(["name", "type", "table"], {"name": "TRAP2", "type": "2D6", "table": ["遺伝子再編成 コマンドGENEの結果を適用。", "白カードひき直し 白カードを引き直す。", "ブラスト レベル+1、耐久-1、精神-1、パワー+20、同系列のカードは出せる最大のものを使用しなければならない。より高いレベルのカードをチェックすることは可能。死んで復活するか、もう一度かかると治る。", "ロックに会う 説得される。", "白顔露見 白カードと顔カードが露見する。", "共振樹 レベルによって違う火力のダメージを食らう。火力は以下の通り。0:0, 1:3, 2:6, 3:10, 4:20, 5:30, 6:50", "結婚・離婚 独身のキャラは既婚に、既婚のキャラは独身になる。", "白カードもう１枚 白カードをもう１枚引く。", "プラグ 5レベル、パワー50のエスパーになる。自分の手番か、戦闘時のラウンドの最初にコマンドPLUGの効果を適用。", "TRAP3 TRAP3へ。", "全カード露見 キャラクターカードと白カード、顔カード、能力カードが露見する。"]}), "T3": $hash2(["name", "type", "table"], {"name": "TRAP3", "type": "2D6", "table": ["真の人格 リインカーネーション。", "結界 ゲームから除外される。そこにいたチェックで4以下を振ると復帰できる。", "あたり 惑星カードを2枚引く。引く度に効果を適用する。", "信念逆転 GoodはEvilに、EvilはGoodに、E/GはG/Eになる。リュカーン、エルナ、カルダームは顔カードの色が逆転する。ロックはかからない。", "全員ランテレ 全員ランダムテレポート。", "情報入手3枚 情報入手3枚、ジェシカは入れることができるが、トワイライト・ウォーリアは入らない。", "攻守逆転 Goodが拠点を防衛し、Evilが破壊するようになる。もう一度適用されると元の状態に戻る。", "真のG/E 顔カードが青であればEvilに、赤であればGoodになる。個別勝利条件は消える。ロックはかからない。", "遺伝子再編成 コマンドGENEの結果を適用。", "TRAP4 TRAP4へ。", "一列破壊 ランダムに1列が破壊される。そこにいたキャラはレベルチェックに成功しないと死ぬ。ただし、船を持っているキャラは6Lvとしてチェックできる。ブラックメイデンは船扱いにならない。"]}), "T4": $hash2(["name", "type", "table"], {"name": "TRAP4", "type": "2D6", "table": ["全員真の人格 全員リインカーネーション。", "全員10:1 全員に10:1のダメージ。ロックもかかる。", "全員ブラスト 全員ブラストする。レベル+1、耐久-1、精神-1、パワー+20、同系列のカードは出せる最大のものを使用しなければならない。より高いレベルのカードをチェックすることは可能。死んで復活するか、もう一度かかると治る。", "全員ロックに会う 全員説得される。", "全員惑星カード1枚 全員惑星カード1枚引く", "全員ランダムアクシデント 全員コマンドRAの効果を適用する。", "全員白カードもう1枚 全員白カードを1枚引ける。", "全員全カード露見 全員全カードが露見する。", "全員遺伝子再編成 全員遺伝子再編成する。", "TRAP1 TRAP1へ。", "全土破壊 全土が破壊される。全員レベルチェックし、成功したらゲームに勝利、失敗したら敗北する。ただし、船を持っているキャラは6Lvとしてチェックできる。ブラックメイデンは船扱いにならない。"]}), "GENE": $hash2(["name", "type", "table"], {"name": "遺伝子再編成", "type": "1D6", "table": ["精神+1、耐久-1", "精神+1、レベル-1", "耐久+1、レベル-1", "レベル+1、精神-1", "耐久+1、精神-1", "レベル+1、耐久-1"]}), "RA": $hash2(["name", "type", "table"], {"name": "ランダムアクシデント", "type": "1D6", "table": ["真の人格 リインカーネーションする。", "ブラスト レベル+1、耐久-1、精神-1、パワー+20、同系列のカードは出せる最大のものを使用しなければならない。より高いレベルのカードをチェックすることは可能。死んで復活するか、もう一度かかると治る。", "信念逆転 GoodはEvilに、EvilはGoodに、E/GはG/Eになる。リュカーン、エルナ、カルダームは顔カードの色が逆転する。ロックはかからない。", "ロックに会う 説得される。", "遺伝子再編成 コマンドGENEの結果を適用。", "何もなし。"]}), "MNS": $hash2(["name", "type", "table"], {"name": "大臣の特権", "type": "2D6", "table": ["亜空間レーザー 2D6で7以下でLv.7火力100が出る船", "キャラクター", "帝国艦隊 船x2", "Lv4ESPフィールド", "ビームキャノン", "帝国軍巡洋艦 船", "Lv3ジャマー", "Lv3スーツ", "何もなし", "何もなし", "大臣解任 以後特権は使えなくなる"]})})));
+    return self.$setPrefixes($rb_plus(["ARR", "REV", "ZS", "TF", "SHIP", "SHIP_BM", "SHIP_MS", "PLUG", "T1-3", "T1-4", "GEO", "IGEO", "HYB", /DMG(\d+)/i, /JAIL(\d+)*/i, /(\d+)*RG/i, /(\d+)*BL/i, /(\d+)*BZ/i, /(\d+)*BC/i], (($a = $Locke.$$cvars['@@tables']) == null ? nil : $a).$keys()));
   })($nesting[0], Opal.const_get_relative($nesting, 'DiceBot'), $nesting)
 })(Opal);
 
